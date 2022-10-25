@@ -12,7 +12,8 @@ def mcp_curve(y_true, y_score, abs_tolerance=1e-8):
         belonging to a particular class.
         The order of the class scores must correspond to the numerical or
         lexicographical order of the labels in y_true.
-    abs_tolerance : absolute tolerance threshold for checking whether probabilities sum up to 1
+    abs_tolerance : absolute tolerance threshold for checking whether probabilities 
+        sum up to 1
     """
 
     if y_true.shape[0] != y_score.shape[0]:
@@ -52,7 +53,7 @@ def mcp_curve(y_true, y_score, abs_tolerance=1e-8):
     return curve_x, curve_y
 
 
-def mcp_score(y_true, y_score):
+def mcp_score(y_true, y_score, abs_tolerance=1e-8):
     """
     Calculate area under mcp curve with trapezoid rule.
     
@@ -64,14 +65,15 @@ def mcp_score(y_true, y_score):
         belonging to a particular class.
         The order of the class scores must correspond to the numerical or
         lexicographical order of the labels in y_true.
-    
+    abs_tolerance : absolute tolerance threshold for checking whether probabilities 
+        sum up to 1
     Returns
     ----------
     area: Approximated area under curve
     """
     
     # calculate curve points
-    curve_x, curve_y = mcp_curve(y_true, y_score)
+    curve_x, curve_y = mcp_curve(y_true, y_score, abs_tolerance=abs_tolerance)
     
     # integrate to get the area
     area = np.trapz(curve_y, x=curve_x)
@@ -79,7 +81,7 @@ def mcp_score(y_true, y_score):
     return area
     
 
-def plot_mcp_curve(y_true, y_score):
+def plot_mcp_curve(y_true, y_score, abs_tolerance=1e-8):
     """
     Plot mcp curve based on given probabilities and labels. If more than one algorithm scores given, plot all curves.
     
@@ -92,25 +94,29 @@ def plot_mcp_curve(y_true, y_score):
         The order of the class scores must correspond to the numerical or
         lexicographical order of the labels in y_true.
         If dictionary passed, a curve is plot for each key-value pair existing in dict.
+    abs_tolerance : absolute tolerance threshold for checking whether probabilities 
+        sum up to 1
     """
     x, y, labels = [], [], []
     
     # check for data type
     if type(y_score) is dict:
         for key in y_score:
-            area = np.around(mcp_score(y_true, y_score[key]), decimals=4)
+            area = np.around(mcp_score(y_true, y_score[key], abs_tolerance=abs_tolerance),
+                    decimals=4)
             label = key + " (AUC={})".format(area)
             labels.append(label)
             
             # get data for plotting
-            x_array, y_array = mcp_curve(y_true, y_score[key])
+            x_array, y_array = mcp_curve(y_true, y_score[key], abs_tolerance=abs_tolerance)
             x.append(x_array)
             y.append(y_array)
     else:
-        x_array, y_array = mcp_curve(y_true, y_score)
+        x_array, y_array = mcp_curve(y_true, y_score, abs_tolerance=abs_tolerance)
         x.append(x_array)
         y.append(y_array)
-        area = np.around(mcp_score(y_true, y_score), decimals=4)
+        area = np.around(mcp_score(y_true, y_score, abs_tolerance=abs_tolerance),
+                decimals=4)
         label = 'clf1 (AUC={})'.format(area)
         labels.append(label)
         
