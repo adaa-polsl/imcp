@@ -49,6 +49,14 @@ class TestMCPCurve(unittest.TestCase):
     def test_classes_error(self):
         with self.assertRaises(ValueError):
             mcp_curve(self.y_true, self.y_score.iloc[:, 0:5])
+
+    def test_abs_tolerance(self):
+        y_score = np.array([[0.33, 0.34, 0.32], [0.35, 0.32, 0.32]])
+        y_true = np.array([2, 1])
+        try:
+            x,y = mcp_curve(y_true, y_score, abs_tolerance=0.1)
+        except ValueError:
+            self.fail('Failed with given tolerance threshold')
         
 if __name__ == '__main__':
     unittest.main()

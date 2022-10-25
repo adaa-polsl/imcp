@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def mcp_curve(y_true, y_score):
+def mcp_curve(y_true, y_score, abs_tolerance=1e-8):
     """
     Parameters
     ----------
@@ -12,12 +12,13 @@ def mcp_curve(y_true, y_score):
         belonging to a particular class.
         The order of the class scores must correspond to the numerical or
         lexicographical order of the labels in y_true.
+    abs_tolerance : absolute tolerance threshold for checking whether probabilities sum up to 1
     """
 
     if y_true.shape[0] != y_score.shape[0]:
         raise ValueError("'y_true' and 'y_score' have different number of samples")
 
-    if not np.allclose(1, y_score.sum(axis=1)):
+    if not np.allclose(1, y_score.sum(axis=1), rtol=0, atol=abs_tolerance):
         raise ValueError(
             "Target scores need to be probabilities,"
             "i.e. they should sum up to 1.0 over classes"
