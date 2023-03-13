@@ -1,4 +1,4 @@
-from .mcp import (
+from .imcp import (
     mcp_curve,
     mcp_score,
     plot_mcp_curve,

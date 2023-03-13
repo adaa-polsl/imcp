@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 import numpy as np
-from mcp import mcp_curve, mcp_score, plot_curve, imcp_curve
+from imcp import mcp_curve, mcp_score, plot_curve, imcp_curve
 
 
 class TestMCPCurve(unittest.TestCase):
