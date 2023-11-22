@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="imcp",
-    version="0.2",
+    version="0.21",
     description="Imbalanced multiclass classification performance curve",
     author="Łukasz Wróbel, Bartosz Piguła",
     packages=["imcp"],

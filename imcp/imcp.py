@@ -295,7 +295,8 @@ def plot_mcp_curve(
         label = "clf1 (AUC={})".format(area)
         plot_labels.append(label)
 
-    plot_curve(x, y, label=plot_labels, output_fig_path=output_fig_path)
+    fig_title = "MCP curves" if len(x) > 1 else "MCP curve"
+    plot_curve(x, y, label=plot_labels, output_fig_path=output_fig_path, fig_title=fig_title)
 
 
 def plot_imcp_curve(
@@ -371,7 +372,9 @@ def plot_imcp_curve(
         label = "clf1 (AUC={})".format(area)
         plot_labels.append(label)
 
-    plot_curve(x, y, label=plot_labels, output_fig_path=output_fig_path)
+
+    fig_title = "IMCP curves" if len(x) > 1 else "IMCP curve"
+    plot_curve(x, y, label=plot_labels, output_fig_path=output_fig_path, fig_title=fig_title)
 
 
 def plot_curve(
@@ -379,6 +382,7 @@ def plot_curve(
     y,
     label: Union[str, List[str]] = None,
     output_fig_path: str = None,
+    fig_title = "(I)MCP curve(s)"
 ):
     """
     Plot curves described with given x and y coordinates.
@@ -450,7 +454,7 @@ def plot_curve(
             linestyle="solid",
             color=_get_color(idx),
         )
-    fig.suptitle("Mcp curve(s)")
+    fig.suptitle(fig_title)
 
     major_ticks = np.arange(0, 1.05, 0.2)
     minor_ticks = np.arange(0, 1.05, 0.1)
