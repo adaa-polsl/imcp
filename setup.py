@@ -18,7 +18,7 @@ setuptools.setup(
     packages=["imcp"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "License :: OSI Approved ::  BSD-3-Clause license",
+        "License :: OSI Approved :: BSD License",
         "Programming Language :: Python :: 3",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: Unix",
