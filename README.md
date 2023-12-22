@@ -8,7 +8,7 @@ With the IMCP curve the classification performance can be graphically shown for 
 
 The package provides the methods for visualizing the IMCP curve and to provide the area under the IMCP curve.
 
-## Instalation
+## Installation
 
 IMCP can be installed from [PyPI](https://pypi.org/project/imcp/)
 
