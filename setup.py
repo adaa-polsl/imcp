@@ -1,12 +1,33 @@
-from setuptools import setup
+import setuptools
+import os
+import io
 
-setup(
+current_path = os.path.dirname(os.path.realpath(__file__))
+
+with io.open(f"{current_path}/README.md", mode="r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
     name="imcp",
-    version="0.21",
-    description="Imbalanced multiclass classification performance curve",
+    version="1.0.0",
     author="Łukasz Wróbel, Bartosz Piguła",
+    description="Imbalanced Multiclass Classification Performance Curve",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/adaa-polsl/imcp",
     packages=["imcp"],
-    install_requires=["numpy", "matplotlib ~= 3.5.2", "pandas"],
-    classifiers=["Programming Language :: Python :: 3.8"],
-    zip_safe=False,
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "License :: OSI Approved ::  BSD-3-Clause license",
+        "Programming Language :: Python :: 3",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: Unix",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Science/Research",
+    ],
+    python_requires=">=3.6",
+    install_requires=["numpy", "matplotlib"],
+    test_suite="tests",
 )

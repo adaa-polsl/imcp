@@ -1,0 +1,9 @@
+sphinx-rtd-theme
+nbsphinx
+sphinx-copybutton
+ipykernel
+pandoc
+pandas
+numpy
+matplotlib
+scikit-learn
