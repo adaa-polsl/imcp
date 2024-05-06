@@ -38,7 +38,7 @@ plot_mcp_curve(y, clf.predict_proba(X))
 
 The methodology is described in detail in:
 
-[1] J. S. Aguilar-Ruiz and M. Michalak, “Diagnostic system assessment for imbalanced multiclass data” (in review, and draft available upon request). 
+[1] J. S. Aguilar-Ruiz and M. Michalak, “Classification performance assessment for imbalanced multiclass data”, Scientific Reports (in press). 
 
 Also, the mathematical background of the multiclass classification performance can be found in:
 
