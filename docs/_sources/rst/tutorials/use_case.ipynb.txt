@@ -4,7 +4,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Use cases from the JoSS paper"
+    "# Use cases"
    ]
   },
   {
